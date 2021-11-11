@@ -43,8 +43,10 @@ def get_email_repo_and_cloc():
     clone_repo = subprocess.Popen(["powershell.exe", f"git clone {repo_link}"], stdout=sys.stdout)
     clone_repo.communicate()
     # running cloc against repo and decoding bit stream to string to pass to email
-    run_cloc = subprocess.run(["powershell.exe", f"C:\\cloc-1.64.exe {directory}"], capture_output=True)
+    run_cloc = subprocess.run(["powershell.exe", f"C:\\cloc-1.90.exe {directory}"], capture_output=True)
+
     cloc_results = run_cloc.stdout.decode("utf-8")
+    print(cloc_results)
     email_report(cloc_results, directory)
 
 
