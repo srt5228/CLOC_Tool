@@ -3,15 +3,15 @@ import subprocess
 import pkg_resources
 import re
 import pathlib
-import yagmail
-import keyring
 # Checks if yagmail is installed - if not installs it
 required = {'yagmail', 'keyring'}
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing = required - installed
 if missing:
-    python = sys.executable
-    subprocess.check_call([python, '-m', 'pip', 'install', *missing], stdout=subprocess.DEVNULL)
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "yagmail"])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "keyring"])
+import yagmail
+import keyring
 
 def initialize():
     """
