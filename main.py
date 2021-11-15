@@ -68,7 +68,7 @@ def cloc_repo(repo_link):
     clone_repo = subprocess.Popen(["powershell.exe", f"git clone {repo_link}"], stdout=sys.stdout)
     clone_repo.communicate()
     # running cloc against repo and decoding bit stream to string to pass to email
-    run_cloc = subprocess.run(["powershell.exe", f"cloc-1.90.exe {directory}"], capture_output=True)
+    run_cloc = subprocess.run(["powershell.exe", f".\\cloc-1.90.exe {directory}"], capture_output=True)
     cloc_results = run_cloc.stdout.decode("utf-8")
     # deleting the repo directory to avoid error messages if the user clocs the same repo - could have also checked
     subprocess.Popen(["powershell.exe", f"Remove-Item -Force -Recurse -Path .\\{directory}"], stdout=sys.stdout)
